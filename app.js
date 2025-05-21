@@ -1,16 +1,15 @@
 const express = require("express")
-const app = express()
+const countryRoute = require("./routes/country")
 const cors = require("cors")
+
+const app = express()
 
 app.use(cors({origin: "*"}))
 
-const port = 7100
+app.use("/country", countryRoute)
 
-app.get("/", (req, res) => {
-    res.send("Postgres API works!")
-})
+const port = 7100
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
-    console.log(`Testing GitOps v4`)
 })

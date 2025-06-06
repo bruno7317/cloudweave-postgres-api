@@ -9,6 +9,17 @@ async function getAllCountries() {
     }
 }
 
+async function getResources(country_id) {
+    try {
+        const resources = await db.countryResource.findMany({
+            where: { country_id }
+        })
+        return resources
+    } catch (error) {
+        throw new Error(`Failed to fetch resources for country ID ${id}: ${error.message}`)
+    }
+}
+
 module.exports = {
-    getAllCountries
+    getAllCountries, getResources
 }
